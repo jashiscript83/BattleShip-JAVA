@@ -11,3 +11,18 @@ background-image: url("113183.jpg");
 
 }
 
+.ships{
+
+    background-color: red;
+}
+
+
+.salvos{
+    background-color: black;
+}
+
+.hits{
+    background-color: yellow;
+
+}
+

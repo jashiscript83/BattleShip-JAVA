@@ -17,7 +17,9 @@ public class SalvoApplication {
     }
 
     @Bean
-    public CommandLineRunner initData(PlayerRepository repository,GameRepository gamerepository,GamePlayerRepository gameplayerrepository, ShipRepository shipRepository) {
+    public CommandLineRunner initData(PlayerRepository repository,GameRepository gamerepository,
+                                      GamePlayerRepository gameplayerrepository, ShipRepository shipRepository,
+                                      SalvoRepository salvoRepository, ScoreRepository scoreRepository) {
         return (args) -> {
             Player p1 = new Player("j.bauer@ctu.gov");
             repository.save(p1);
@@ -223,6 +225,160 @@ public class SalvoApplication {
             Ship ship27 = new Ship(gp16,locations27,"Patrol Boat");
             gp16.addShip(ship27);
             shipRepository.save(ship27);
+
+            //salvoLocations
+            List<String> salvoLocations1 = Arrays.asList("B4", "B5", "B6");
+            List<String> salvoLocations2 = Arrays.asList("E1", "H3", "A2");
+            List<String> salvoLocations3 = Arrays.asList("B5", "D5", "C7");
+            List<String> salvoLocations4 = Arrays.asList("C5", "C6");
+            List<String> salvoLocations5 = Arrays.asList("H1", "H2", "H3");
+            List<String> salvoLocations6 = Arrays.asList("E1", "F2", "G3");
+            List<String> salvoLocations7 = Arrays.asList("B5", "C6", "H1");
+            List<String> salvoLocations8 = Arrays.asList("C5", "C7", "D5");
+            List<String> salvoLocations9 = Arrays.asList("B5", "B6", "C7");
+            List<String> salvoLocations10 = Arrays.asList("C6", "D6", "E6");
+            List<String> salvoLocations11 = Arrays.asList("H1", "H8");
+            List<String> salvoLocations12 = Arrays.asList("B5", "C5", "F1");
+            List<String> salvoLocations13 = Arrays.asList("F2", "D5");
+            List<String> salvoLocations14 = Arrays.asList("A2", "A4", "G6");
+            List<String> salvoLocations15= Arrays.asList("A3", "H6");
+            List<String> salvoLocations16 = Arrays.asList("G6", "H6", "A4");
+            List<String> salvoLocations17 = Arrays.asList("A2", "A3", "D8");
+            List<String> salvoLocations18 = Arrays.asList("A3", "A4", "F7");
+            List<String> salvoLocations19 = Arrays.asList("A2", "G6", "H6");
+            List<String> salvoLocations20 = Arrays.asList("A1", "A2", "A3");
+            List<String> salvoLocations21 = Arrays.asList("G6", "G7", "G8");
+
+            //salvos
+
+            //game1.salvos
+            Salvo salvo1 = new Salvo(gp1,salvoLocations12,1);
+            gp1.addSalvo(salvo1);
+            salvoRepository.save(salvo1);
+            Salvo salvo2 = new Salvo(gp2,salvoLocations1,1);
+            gp2.addSalvo(salvo2);
+            salvoRepository.save(salvo2);
+
+            Salvo salvo3 = new Salvo(gp1,salvoLocations13,2);
+            gp1.addSalvo(salvo3);
+            salvoRepository.save(salvo3);
+            Salvo salvo4 = new Salvo(gp2,salvoLocations2,2);
+            gp2.addSalvo(salvo4);
+            salvoRepository.save(salvo4);
+
+            //game2.salvos
+            Salvo salvo5 = new Salvo(gp3,salvoLocations14,1);
+            gp3.addSalvo(salvo5);
+            salvoRepository.save(salvo5);
+            Salvo salvo6 = new Salvo(gp4,salvoLocations3,1);
+            gp4.addSalvo(salvo6);
+            salvoRepository.save(salvo6);
+
+
+            Salvo salvo7 = new Salvo(gp3,salvoLocations15,2);
+            gp3.addSalvo(salvo7);
+            salvoRepository.save(salvo7);
+            Salvo salvo8 = new Salvo(gp4,salvoLocations4,2);
+            gp4.addSalvo(salvo8);
+            salvoRepository.save(salvo8);
+
+            //game3.salvos
+            Salvo salvo9 = new Salvo(gp5,salvoLocations16,1);
+            gp5.addSalvo(salvo9);
+            salvoRepository.save(salvo9);
+            Salvo salvo10 = new Salvo(gp6,salvoLocations5,1);
+            gp6.addSalvo(salvo10);
+            salvoRepository.save(salvo10);
+
+            Salvo salvo11 = new Salvo(gp5,salvoLocations17,2);
+            gp5.addSalvo(salvo11);
+            salvoRepository.save(salvo11);
+            Salvo salvo12 = new Salvo(gp6,salvoLocations6,2);
+            gp6.addSalvo(salvo12);
+            salvoRepository.save(salvo12);
+
+            //game4.salvos
+            Salvo salvo13 = new Salvo(gp7,salvoLocations18,1);
+            gp7.addSalvo(salvo13);
+            salvoRepository.save(salvo13);
+            Salvo salvo14 = new Salvo(gp8,salvoLocations7,1);
+            gp8.addSalvo(salvo14);
+            salvoRepository.save(salvo14);
+
+            Salvo salvo15 = new Salvo(gp7,salvoLocations19,2);
+            gp7.addSalvo(salvo15);
+            salvoRepository.save(salvo15);
+            Salvo salvo16 = new Salvo(gp8,salvoLocations8,2);
+            gp8.addSalvo(salvo16);
+            salvoRepository.save(salvo16);
+
+            //game5.salvos
+
+            Salvo salvo17 = new Salvo(gp9,salvoLocations20,1);
+            gp9.addSalvo(salvo17);
+            salvoRepository.save(salvo17);
+            Salvo salvo18 = new Salvo(gp10,salvoLocations9,1);
+            gp10.addSalvo(salvo18);
+            salvoRepository.save(salvo18);
+
+            Salvo salvo19 = new Salvo(gp9,salvoLocations21,2);
+            gp9.addSalvo(salvo19);
+            salvoRepository.save(salvo19);
+            Salvo salvo20 = new Salvo(gp10,salvoLocations10,2);
+            gp10.addSalvo(salvo20);
+            salvoRepository.save(salvo20);
+
+
+
+            Salvo salvo21 = new Salvo(gp10,salvoLocations11,3);
+            gp10.addSalvo(salvo21);
+            salvoRepository.save(salvo21);
+
+            //scores
+
+            //score game1
+
+            Score score1  = new Score( g1,p1,1.0);
+            p1.addScore(score1);
+            scoreRepository.save(score1);
+
+            Score score2  = new Score( g1,p4,0.0);
+            p4.addScore(score2);
+            scoreRepository.save(score2);
+
+           //score game2
+
+            Score score3  = new Score( g2,p1,0.5);
+            p1.addScore(score3);
+            scoreRepository.save(score3);
+
+            Score score4  = new Score( g2,p4,0.5);
+            p4.addScore(score4);
+            scoreRepository.save(score4);
+
+            //score game3
+
+
+            Score score5  = new Score( g3,p4,1.0);
+            p4.addScore(score5);
+            scoreRepository.save(score5);
+
+            Score score6  = new Score( g3,p3,0.0);
+            p3.addScore(score6);
+            scoreRepository.save(score6);
+
+            //score game4
+
+            Score score7  = new Score( g4,p4,0.5);
+            p4.addScore(score7);
+            scoreRepository.save(score7);
+
+            Score score8  = new Score( g4,p1,0.5);
+            p1.addScore(score8);
+            scoreRepository.save(score8);
+
+
+
 
 
 

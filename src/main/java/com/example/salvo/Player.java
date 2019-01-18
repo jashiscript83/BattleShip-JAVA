@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,14 +20,31 @@ public class Player {
 
     private long id;
 
+    @JsonIgnore
+    public Set<Score> getScores() {
+        return scores;
+    }
+
+
     @OneToMany(mappedBy="player", fetch=FetchType.EAGER)
-    private Set<GamePlayer> gamePlayers;
+    private Set<GamePlayer> gamePlayers ;
+
+    @OneToMany(mappedBy="player", fetch=FetchType.EAGER)
+    private Set<Score> scores =  new LinkedHashSet<>();
+
+    public void setScores(Set<Score> scores) {
+        this.scores= scores;
+    }
 
     public void addGamePlayer(GamePlayer gameplayer) {
         gameplayer.setPlayer(this);
         this.gamePlayers.add(gameplayer);
     }
 
+    public void addScore(Score score) {
+        score.setPlayer(this);
+        this.scores.add(score);
+    }
 
         private String userName;
 
