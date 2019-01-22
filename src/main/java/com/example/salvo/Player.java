@@ -32,6 +32,8 @@ public class Player {
     @OneToMany(mappedBy="player", fetch=FetchType.EAGER)
     private Set<Score> scores =  new LinkedHashSet<>();
 
+    private String password;
+
     public void setScores(Set<Score> scores) {
         this.scores= scores;
     }
@@ -39,6 +41,14 @@ public class Player {
     public void addGamePlayer(GamePlayer gameplayer) {
         gameplayer.setPlayer(this);
         this.gamePlayers.add(gameplayer);
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void addScore(Score score) {
@@ -50,9 +60,10 @@ public class Player {
 
         public Player() { }
 
-        public Player(String email) {
+        public Player(String email, String password) {
 
             this.userName = email;
+            this.password = password;
         }
 
         public String getUserName() {

@@ -2,9 +2,9 @@ package com.example.salvo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class SalvoControler {
+    @Autowired
+    private  PlayerRepository playerRepository;
 
     @Autowired
     private GameRepository gamerepo;
@@ -51,7 +53,7 @@ public class SalvoControler {
 
     @RequestMapping("/game_view/{id}")
   public  Map<String, Object>makeNewRouteDTO(@PathVariable Long id) {
-        GamePlayer gamePlayer = gamePlayerRepository.findById(id).orElse(null);
+        GamePlayer gamePlayer = gamePlayerRepository.findOne(id);
         Set<Ship> ships = gamePlayer.getShips();
         Set<Salvo> salvos = gamePlayer.getSalvos();
         Game game = gamePlayer.getGame();
@@ -130,13 +132,22 @@ DTO.put("GamePlayerId", salvo.getGamePlayer().getId());
         return DTO;
     }
 
-//
-//@RequestMapping("/game_view/nn")
-// private   Map<String, Object>makeNewRouteDTO(Game game){
-//    Map<String,Object> DTO  = new HashMap<>();
-//    DTO.put("id", game.getId());
-//    DTO.put("gamePlayers",game.getGamePlayers().stream()
-//            .map(gp ->makeGamePlayerDTO(gp)).collect(Collectors.toList()));
-//    return  DTO;
-//};
+
+    @RequestMapping(path = "/players", method = RequestMethod.POST)
+    public ResponseEntity<Object> register(
+            @RequestParam String userName, @RequestParam String password
+            ) {
+
+        if (userName.isEmpty() || password.isEmpty()) {
+            return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+        }
+
+        if (playerRepository.findByUserName(userName) !=  null) {
+            return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+        }
+
+        playerRepository.save(new Player(userName, password));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
 }
