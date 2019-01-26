@@ -1,3 +1,20 @@
+var sound = document.createElement('audio')
+sound.id = 'audio'
+sound.autoplay = 'autoplay'
+// sound.controls = 'controls'
+sound.src = 'Vikings%20Intro%20(2013)%20HD.mp3'
+sound.type = 'audio/mp3'
+// document.body.appendChild(sound)
+
+function playAudio() {
+    document.getElementById('audio').play();
+}
+
+setTimeout("playAudio()", 3000);
+
+
+
+
 var data;
 var game;
 var gamers;
@@ -6,6 +23,9 @@ var mails = [];
 var playersC = [];
 Players = [];
 var score = [];
+var userData;
+var user;
+
 
 
 
@@ -20,16 +40,23 @@ fetch("/api/games",{
     }
 
 }).then(function(json){
-    data = json;
-
+    data = json.games;
+    userData = json;
+    user = userData.User;
+    console.log(user)
+    console.log(json)
     createList();
     createScores();
-    createTable()
+    createTable();
+    show();
 
 
 }).catch(function (error){
     console.log("Request failed:" + error.message);
 });
+
+
+
 
 function createList() {
 
@@ -156,3 +183,147 @@ function  createTable() {
     }
 
 }
+
+var email;
+var password;
+
+
+function getInput() {
+    var inputEmail = document.getElementById("exampleInputEmail1");
+    var inputPassword = document.getElementById("exampleInputPassword1");
+    email = inputEmail.value
+    password = inputPassword.value
+
+
+    console.log(email + " " + password)
+}
+
+function login() {
+    getInput();
+    fetch("/api/login", {
+
+        credentials: 'include',
+
+        headers: {
+
+            'Content-Type': 'application/x-www-form-urlencoded'
+
+        },
+
+        method: 'POST',
+
+        body: 'userName='+email+'&password='+password,
+
+    })
+
+        .then(function (data) {
+
+
+            console.log('Request success: ', data);        }).then(function () { location.reload(true)  })
+
+.catch(function (error) {
+
+            console.log('Request failure: ', error);
+
+        });
+}
+
+
+
+
+function logout() {
+
+    fetch("/api/logout", {
+
+        credentials: 'include',
+
+        headers: {
+
+            'Content-Type': 'application/x-www-form-urlencoded'
+
+        },
+
+        method: 'POST',
+
+
+    })
+
+        .then(function (data) {
+
+            console.log('Request success: ', data);        }).then(function () {location.reload(true)    })
+
+        .catch(function (error) {
+
+            console.log('Request failure: ', error);
+
+        });
+}
+
+
+function signingUp() {
+    getInput();
+
+
+    fetch("/api/players", {
+
+        credentials: 'include',
+
+        headers: {
+
+            'Content-Type': 'application/x-www-form-urlencoded'
+
+        },
+
+        method: 'POST',
+
+        body: 'userName='+email+'&password='+password,
+
+    })
+
+        .then(function (data) {
+
+            return data.json();        }).then(function (response) {  login(); console.log(response)})
+
+        .catch(function (error) {
+
+            console.log('Request failure: ', error.response);
+
+        });
+}
+
+
+
+function  show() {
+
+    var content = document.getElementById("showContent");
+    var form = document.getElementById("showForm");
+    var signButton = document.getElementById("sign");
+    var loginButton = document.getElementById("login");
+    var logoutButton = document.getElementById("logout");
+
+
+    if (user == null ){
+
+        form.style.display="block";
+        content.style.display="none";
+
+    }else if(user != null){
+        form.style.display="none";
+        content.style.display="block";
+    }
+
+    if(user != null){
+        logoutButton.style.display ="block"
+        loginButton.style.display ="none"
+        signButton.style.display ="none"
+    }else if (user == null){
+        loginButton.style.display ="block"
+        signButton.style.display ="block"
+        logoutButton.style.display ="none"
+
+    }
+
+    console.log(user)
+}
+
+

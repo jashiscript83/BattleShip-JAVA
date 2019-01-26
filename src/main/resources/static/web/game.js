@@ -84,8 +84,8 @@ function createTable() {
     var tbody = document.createElement("tbody");
     table.appendChild(tbody);
     table.style.border = "5px solid blue";
-     table.style.width= "50%";
-     table.style.margin = "5%";
+     table.style.width= "30%";
+
 
     for(var i = 0; i<11 ; i++){
 
@@ -93,7 +93,7 @@ function createTable() {
         tbody.appendChild(tr);
         tr.style.border = "3px solid white";
 
-        tr.style.padding = "15px";
+        tr.style.padding = "7px";
 
 
         for(var x = 0; x<11 ; x++){
@@ -109,7 +109,7 @@ function createTable() {
 
             tr.appendChild(td);
             td.style.border = "3px solid white";
-            td.style.padding = "15px"
+            td.style.padding = "11px"
 
         }
 
@@ -163,8 +163,8 @@ function createTable2() {
     var tbody2 = document.createElement("tbody");
     table2.appendChild(tbody2);
     table2.style.border = "5px solid blue";
-    table2.style.width= "50%";
-    table2.style.margin = "5%";
+    table2.style.width= "30%";
+    table2.style.marginLeft = "2%";
 
     for(var i = 0; i<11 ; i++){
 
@@ -172,7 +172,7 @@ function createTable2() {
         tbody2.appendChild(tr2);
         tr2.style.border = "3px solid white";
 
-        tr2.style.padding = "15px";
+        tr2.style.padding = "7px";
 
 
         for(var x = 0; x<11 ; x++){
@@ -189,7 +189,7 @@ function createTable2() {
 
             tr2.appendChild(td2);
             td2.style.border = "3px solid white";
-            td2.style.padding = "15px"
+            td2.style.padding = "11px"
 
         }
 
@@ -221,8 +221,11 @@ function playersVs(){
     var players = document.getElementById("gamers")
     for (var l = 0; l < data.game.gamePlayers.length; l++) {
 
-        gamer1 = data.game.gamePlayers[0].Player.email;
-        gamer2 = data.game.gamePlayers[1].Player.email;
+    gamer1 = data.game.gamePlayers[0].Player.email;
+    gamer2 = data.game.gamePlayers[1].Player.email;
+
+
+
 
         players.textContent = gamer1 + " " + "VS"+ " " +gamer2;
 

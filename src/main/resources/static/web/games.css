@@ -1,14 +1,58 @@
 body{
-background-image: url("113183.jpg");
 
+background-image: url("image.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+
+}
+form{
+
+    width: 25%;
+    color: #300000;
+}
+.form{
+    display: none;
+    margin: 5%;
+}
+button{
+    margin: 2%;
+}
+.content{
+    display: none;
+    margin: 5%;
 
 }
 .olist{
-    background-color: aquamarine;
+    background-color: #f436368f;
     font-size: medium;
     font-family: "Comic Sans MS";
     opacity: 0.8;
+    color: white;
 
+}
+.blood {
+    text-align: center;
+    color:silver;
+    text-shadow:
+            4px 4px 1px #300000,
+            4px 6px 1px #400000,
+            4px 8px 1px #500000,
+            4px 10px 1px #600000,
+            4px 12px 1px #700000,
+            4px 14px 1px #800000,
+            4px 16px 1px #900000,
+            4px 18px 1px #A00000,
+            4px 20px 1px #B00000,
+            4px 22px 1px #C00000,
+            4px 24px 1px #D00000,
+            4px 26px 1px #E00000,
+            4px 28px 1px #F00000,
+            4px 30px 1px #FA0000,
+            4px 32px 1px #FB0000,
+            4px 34px 1px #FC0000,
+            4px 36px 1px #FD0000,
+            4px 38px 1px #FE0000,
+            4px 40px 2px #FF0000;
 }
 
 .ships{
@@ -25,4 +69,46 @@ background-image: url("113183.jpg");
     background-color: yellow;
 
 }
+.tablesOrders{
+    display: flex;
+    flex-direction: row;
+    font-family: fantasy;
+    color: darkred;
+}
 
+
+.fight {
+
+    font: 200 2em/1 "Oswald", sans-serif;
+    letter-spacing: 0;
+    padding: .25em 0 .325em;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    text-shadow: 0 0 80px rgba(255,255,255,.5);
+
+    /* Clip Background Image */
+
+    background: url(http://f.cl.ly/items/010q3E1u3p2Q0j1L1S1o/animated_text_fill.png) repeat-y;
+    -webkit-background-clip: text;
+
+
+    /* Animate Background Image */
+
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: aitf 80s linear infinite;
+
+    /* Activate hardware acceleration for smoother animations */
+
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-backface-visibility: hidden;
+
+}
+
+
+/* Animate Background Image */
+
+@-webkit-keyframes aitf {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}

@@ -78,5 +78,4 @@ public class Game {
         return this.gamePlayers.stream().map(gp -> gp.getPlayer()).collect(toList());
     }
 
-
 }
