@@ -29,6 +29,7 @@ var user;
 
 
 
+
 fetch("/api/games",{
     method:"GET",
 
@@ -62,17 +63,43 @@ function createList() {
 
     var order = document.getElementById("ol");
 
+
+
+
+
     for (var i = 0; i < data.length; i++) {
         game = data[i].date;
         gamers = data[i].gamePlayers;
+
+
         var list = document.createElement("li");
+        var a = document.createElement("a");
+
          for (var r = 0; r < gamers.length; r++){
 
-            mails.push(gamers[r].Player.email)
+             mails.push(gamers[r].Player.email)
 
-        }
 
-        list.textContent =  game + ": " + mails.splice(0,2);
+
+
+
+             idNumber = gamers[r].Id;
+
+             if(gamers[r].Player.email == user){
+
+                 a.setAttribute("href", "http://localhost:8080/web/game.html?gp=" + idNumber);
+                 a.textContent = " ►" + "ENTRAR" + "◄" ;
+
+             }
+
+
+
+         }
+
+
+        list.textContent =  game + ": " +mails.splice(0,2);
+
+        list.appendChild(a);
 
         order.appendChild( list);
 
@@ -107,8 +134,6 @@ function  createScores() {
     })
 
 
-    console.log(Players)
-    console.log(score)
 
 
 

@@ -75,6 +75,9 @@ public class SalvoControler {
         DTO.put("game", makeGameDTO(gamePlayer.getGame()));
         DTO.put("ships", ships.stream().map(ship -> makeShipDTO(ship)).collect(Collectors.toList()));
         DTO.put("salvos", gamePlayers.stream().map(gp -> makeSalvosDTO(gp.getSalvos())).collect(Collectors.toList()));
+
+
+        
         return DTO;
 
     }
@@ -194,29 +197,3 @@ public class SalvoControler {
 
 
 
-
-
-//    @RequestMapping(path = "/players", method = RequestMethod.POST)
-//    public ResponseEntity<Map<String, Object>> createPlayer(@RequestParam String player) {
-//
-//        if (player.isEmpty() ) {
-//            return new ResponseEntity<>(makeMap("Error 201", "No name"), HttpStatus.FORBIDDEN);
-//        }
-//
-//        if (player !=  null) {
-//            return new ResponseEntity<>(makeMap("Error 403", "Username already exists"), HttpStatus.CONFLICT);
-//        }
-//
-//        Player newPlayer =hgh ;
-//        return new ResponseEntity<>(makeMap("id", newPlayer.getId()), HttpStatus.CREATED);
-//    }
-//
-//    private Map<String, Object> makeMap(String key, Object value) {
-//        Map<String, Object> map = new HashMap<>();
-//        map.put(key, value);
-//        return map;
-//    }
-//
-//
-//
-//}
