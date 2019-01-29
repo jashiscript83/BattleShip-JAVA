@@ -115,16 +115,22 @@ button{
 
 .ships{
 
-    background-color: red;
+    background-image:url("BARCO.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
 .salvos{
-    background-color: black;
+    background-image: url("SHOOT.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .hits{
-    background-color: yellow;
+    background-image:url("SKULL.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 
 }
 .tablesOrders{

@@ -315,7 +315,34 @@ function signingUp() {
 
         });
 }
+function createGame() {
+    fetch("/api/games", {
 
+        credentials: 'include',
+
+        headers: {
+
+            'Content-Type': 'application/x-www-form-urlencoded'
+
+        },
+
+        method: 'POST',
+
+
+
+    })
+
+        .then(function (data) {
+
+            return data.json();        }).then(function (response) { console.log(response)})
+
+        .catch(function (error) {
+
+            console.log('Request failure: ', error.response);
+
+        });
+
+}
 
 
 function  show() {

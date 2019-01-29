@@ -205,7 +205,11 @@ function createTable2() {
 
             console.log(positions3 )
             var value3 = document.getElementById(positions3);
-            value3.style.background = "blue";
+            value3.style.backgroundImage = "url(\"SHOOT.png\")" ;
+            value3.style.backgroundRepeat = " no-repeat";
+            value3.style.backgroundSize = "cover";
+
+
 
             console.log(value3)
 
