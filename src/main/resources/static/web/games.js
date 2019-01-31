@@ -461,3 +461,36 @@ function  show() {
 }
 
 
+function  addships() {
+    fetch("/api/games/players/"+ idNumber+"/ships", {
+
+        credentials: 'include',
+
+        headers: {
+
+            'Accept': 'application/json',
+
+            'Content-Type': 'application/json'
+
+        },
+
+        method: 'POST',
+        body: JSON.stringify([{ }])
+
+
+
+    })
+
+        .then(function (response) {
+
+            return response.json();            }).then(function (json) {        })
+
+        .catch(function (error) {
+
+            console.log('Request failure: ', error);
+        });
+
+
+
+
+}

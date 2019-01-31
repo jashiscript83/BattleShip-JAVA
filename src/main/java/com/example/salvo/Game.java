@@ -1,6 +1,7 @@
 package com.example.salvo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -60,6 +61,7 @@ public class Game {
         this.date= date;
     }
 
+    @JsonIgnore
     public Set<GamePlayer> getGamePlayers() {
         return gamePlayers;
     }

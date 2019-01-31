@@ -114,13 +114,18 @@ public class SalvoControler {
         if(getCurrentUser(authentication)!= gamePlayer.getPlayer()){
             return new ResponseEntity<>(makeMap("Error", "error"), HttpStatus.UNAUTHORIZED);
         }
-        if(gamePlayer.getShips().size() > 0){
+        if(gamePlayer.getShips().size() != 0){
+            System.out.println(gamePlayer.getShips());
             return new ResponseEntity<>(makeMap("Error", "Do something else"), HttpStatus.FORBIDDEN);
         }
 
+        for(Ship ship : ships){
+            gamePlayer.addShip(ship);
 
+            shipRepository.save(ship);
 
-            return new ResponseEntity<>(makeMap("id", ""), HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(makeMap("ships", "ships placed"), HttpStatus.CREATED);
 
 
 
