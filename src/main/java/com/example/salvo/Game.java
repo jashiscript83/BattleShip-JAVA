@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class Game {
     private Date date = new Date();;
 
     @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
-    private Set<GamePlayer> gamePlayers ;
+    private Set<GamePlayer> gamePlayers = new LinkedHashSet<>();
 
     public Set<Score> getScores() {
         return scores;

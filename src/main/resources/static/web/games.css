@@ -176,3 +176,27 @@ button{
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
+.button {
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.a2  {
+    cursor: pointer;
+    
+    transition: 0.5s;
+
+}
+a2:hover{
+    text-decoration: underline;
+}
+

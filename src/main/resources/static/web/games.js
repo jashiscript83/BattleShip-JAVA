@@ -25,6 +25,7 @@ Players = [];
 var score = [];
 var userData;
 var user;
+var gameId;
 
 
 
@@ -58,6 +59,51 @@ fetch("/api/games",{
 
 
 
+// function getParameterByName2(name) {
+//
+//     var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+//
+//     return match && decodeURIComponent(match[1].replace(/\+/g, ' ',));
+//
+// }
+//
+// function getUrl2(){
+//     gameId = getParameterByName2()
+//     return"/api/game/"+ gameId +"/players";
+// }
+
+function join() {
+    console.log(event.target)
+    gameId = event.target.getAttribute("data-game")
+    fetch("/api/game/"+gameId+"/players", {
+
+        credentials: 'include',
+
+        headers: {
+
+            'Content-Type': 'application/x-www-form-urlencoded'
+
+        },
+
+        method: 'POST',
+
+
+
+    })
+
+        .then(function (data) {
+
+            return data.json();        }).then(function (response) {
+        window.location.href = "http://localhost:8080/web/game.html?gp=" + response.id
+
+        console.log(response)})
+
+        .catch(function (error) {
+
+            console.log('Request failure: ', error.response);
+
+        });
+}
 
 function createList() {
 
@@ -69,10 +115,12 @@ function createList() {
 
     for (var i = 0; i < data.length; i++) {
         game = data[i].date;
+
         gamers = data[i].gamePlayers;
 
 
         var list = document.createElement("li");
+        var a2 = document.createElement("a");
         var a = document.createElement("a");
 
          for (var r = 0; r < gamers.length; r++){
@@ -85,25 +133,56 @@ function createList() {
 
              idNumber = gamers[r].Id;
 
-             if(gamers[r].Player.email == user){
+             if(gamers[r].Player.email == user) {
 
                  a.setAttribute("href", "http://localhost:8080/web/game.html?gp=" + idNumber);
-                 a.textContent = " ►" + "ENTRAR" + "◄" ;
+
+                 a.textContent = " " + " ►" + "ENTRY" + "◄";
+
+
 
              }
 
 
-
          }
+
+        if( mails.length == 1){
+
+            a2.textContent = " " + " ►" + "JOIN" + "◄";
+            a2.setAttribute("class","a2");
+
+
+            a2.setAttribute("data-game",data[i].id);
+            a2.addEventListener("click", join);
+            a2.style.color = "#009688"
+
+
+if(mails.includes(user)){
+    a2.textContent = "";
+
+}
+
+
+        }
 
 
         list.textContent =  game + ": " +mails.splice(0,2);
 
         list.appendChild(a);
+        list.appendChild(a2);
 
         order.appendChild( list);
 
+
+
+
+
+
+
+
+
     }
+
 
 }
 
@@ -222,6 +301,9 @@ function getInput() {
 
     console.log(email + " " + password)
 }
+
+
+
 
 function login() {
     getInput();

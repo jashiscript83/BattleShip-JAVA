@@ -54,9 +54,6 @@ public class SalvoControler {
             GamePlayer gamePlayer = new GamePlayer(game, getCurrentUser(authentication));
             gamePlayerRepository.save(gamePlayer);
 
-
-
-
             return new ResponseEntity<>(makeMap("id " ,  gamePlayer.getId()), HttpStatus.CREATED);
 
 
@@ -66,6 +63,46 @@ public class SalvoControler {
         }
 
     }
+
+    @RequestMapping( path = "/game/{id}/players", method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> joinGame(@PathVariable Long id, Authentication authentication) {
+        if (authentication == null) {
+
+            return new ResponseEntity<>(makeMap("error ", "PLEASE LOGIN"), HttpStatus.UNAUTHORIZED);
+
+
+        }
+        Game game = gamerepo.findOne(id);
+
+        if (authentication != null) {
+
+
+            if (game == null) {
+                return new ResponseEntity<>(makeMap("error ", "No such game"), HttpStatus.FORBIDDEN);
+
+
+            }
+            if (game.getGamePlayers().size() == 2) {
+                return new ResponseEntity<>(makeMap("error ", "Full game"), HttpStatus.FORBIDDEN);
+
+            }
+            if(game.getPlayers().contains(getCurrentUser(authentication))   ){
+                return new ResponseEntity<>(makeMap("error ", "Look for friends"), HttpStatus.FORBIDDEN);
+
+            }
+
+        }
+
+
+
+
+        GamePlayer gamePlayer = new GamePlayer(game, getCurrentUser(authentication));
+        gamePlayerRepository.save(gamePlayer);
+
+        return new ResponseEntity<>(makeMap("id", gamePlayer.getId()), HttpStatus.CREATED);
+    }
+
+
 
     private Map<String, Object> makeScoresDTO(Set<Score> scores) {
         Map<String, Object> DTO = new LinkedHashMap<>();
