@@ -102,7 +102,31 @@ public class SalvoControler {
         return new ResponseEntity<>(makeMap("id", gamePlayer.getId()), HttpStatus.CREATED);
     }
 
+    @RequestMapping(path = "/games/players/{gamePlayerId}/ships", method =  RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>> placeShips(@PathVariable Long gamePlayerId, Authentication authentication, @RequestBody Set<Ship> ships){
+        GamePlayer gamePlayer = gamePlayerRepository.findOne(gamePlayerId);
+        if(authentication == null){
+            return new ResponseEntity<>(makeMap("Error", "Login please"), HttpStatus.UNAUTHORIZED);
+        }
+        if(gamePlayer == null){
+            return new ResponseEntity<>(makeMap("Error", "no GamePlayer"), HttpStatus.UNAUTHORIZED);
+        }
+        if(getCurrentUser(authentication)!= gamePlayer.getPlayer()){
+            return new ResponseEntity<>(makeMap("Error", "error"), HttpStatus.UNAUTHORIZED);
+        }
+        if(gamePlayer.getShips().size() > 0){
+            return new ResponseEntity<>(makeMap("Error", "Do something else"), HttpStatus.FORBIDDEN);
+        }
 
+
+
+            return new ResponseEntity<>(makeMap("id", ""), HttpStatus.CREATED);
+
+
+
+
+
+    }
 
     private Map<String, Object> makeScoresDTO(Set<Score> scores) {
         Map<String, Object> DTO = new LinkedHashMap<>();
@@ -151,7 +175,7 @@ public class SalvoControler {
 
         }
 
-                 return new ResponseEntity<>(makeMap("Conflicto!!", "CONECTATE GILIPOLLAS"),HttpStatus.CONFLICT);
+                 return new ResponseEntity<>(makeMap("Conflicto!!", "please login"),HttpStatus.CONFLICT);
 
 
 
